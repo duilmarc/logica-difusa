@@ -1,6 +1,8 @@
 import numpy as np
 import skfuzzy as fuzz
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+import matplotlib.gridspec as gridspec
 
 cercania_mineria_l = np.arange(0,2000,10)
 cercania_mineria_i = np.arange(0,2000,10) # kilometros
@@ -24,47 +26,35 @@ PenfermedadesM_baja = fuzz.zmf(PenfermedadesM, 4, 10)
 PenfermedadesM_media = fuzz.trapmf(PenfermedadesM,[2,4,6,8 ])
 PenfermedadesM_alta = fuzz.smf(PenfermedadesM, 4,10)
 
-fig, (ax0, ax1, ax2,ax3) = plt.subplots(nrows=4, figsize=(8, 9))
+mpl.style.use('seaborn')
 
-fig2 = plt.figure(constrained_layout=True)
-spec2 = gridspec.GridSpec(ncols=2, nrows=2, figure=fig2)
-f2_ax1 = fig2.add_subplot(spec2[0, 0])
-f2_ax2 = fig2.add_subplot(spec2[0, 1])
-f2_ax3 = fig2.add_subplot(spec2[1, 0])
-f2_ax4 = fig2.add_subplot(spec2[1, 1])
-
-ax0.plot(cercania_mineria_l, cercania_mineria_baja_l, 'b', linewidth=1.5, label='Cercano')
-ax0.plot(cercania_mineria_l, cercania_mineria_media_l, 'g', linewidth=1.5, label='Intermedio')
-ax0.plot(cercania_mineria_l, cercania_mineria_alta_l, 'r', linewidth=1.5, label='Lejos')
-ax0.set_title('Cercania a la mineria legal')
-ax0.legend()
-
-ax3.plot(cercania_mineria_i, cercania_mineria_baja_i, 'b', linewidth=1.5, label='Cercano')
-ax3.plot(cercania_mineria_i, cercania_mineria_media_i, 'g', linewidth=1.5, label='Intermedio')
-ax3.plot(cercania_mineria_i, cercania_mineria_alta_i, 'r', linewidth=1.5, label='Lejos')
-ax3.set_title('Cercania a la mineria ilegal')
-ax3.legend()
-
-ax1.plot(calidad_agua, calidad_agua_bajo, 'b', linewidth=1.5, label='No tratable')
-ax1.plot(calidad_agua, calidad_agua_media, 'g', linewidth=1.5, label='Tratable')
-ax1.plot(calidad_agua, calidad_agua_alta, 'r', linewidth=1.5, label='Potable')
-ax1.set_title('Calidad de agua')
-ax1.legend()
-
-ax2.plot(PenfermedadesM, PenfermedadesM_baja, 'b', linewidth=1.5, label='Posibilidad Baja')
-ax2.plot(PenfermedadesM, PenfermedadesM_media, 'g', linewidth=1.5, label='Posibilidad Media')
-ax2.plot(PenfermedadesM, PenfermedadesM_alta, 'r', linewidth=1.5, label='Posibilidad Alta')
-ax2.set_title('Enfermedades')
-ax2.legend()
+fig, axs = plt.subplots(2, 2)
 
 
-for ax in (ax0, ax1, ax2):
-    ax.spines['top'].set_visible(False)
-    ax.spines['right'].set_visible(False)
-    ax.get_xaxis().tick_bottom()
-    ax.get_yaxis().tick_left()
+axs[0,0].plot(cercania_mineria_l, cercania_mineria_baja_l, 'b', linewidth=1.5, label='Cercano')
+axs[0,0].plot(cercania_mineria_l, cercania_mineria_media_l, '-', linewidth=1.5, label='Intermedio')
+axs[0,0].plot(cercania_mineria_l, cercania_mineria_alta_l, 'g', linewidth=1.5, label='Lejos')
+axs[0,0].set_title('Cercania a la mineria legal')
+axs[0,0].legend()
 
-plt.tight_layout()
+axs[1,1].plot(cercania_mineria_i, cercania_mineria_baja_i, 'b', linewidth=1.5, label='Cercano')
+axs[1,1].plot(cercania_mineria_i, cercania_mineria_media_i, 'g', linewidth=1.5, label='Intermedio')
+axs[1,1].plot(cercania_mineria_i, cercania_mineria_alta_i, 'r', linewidth=1.5, label='Lejos')
+axs[1,1].set_title('Cercania a la mineria ilegal')
+axs[1,1].legend()
+
+axs[1,0].plot(calidad_agua, calidad_agua_bajo, 'b', linewidth=1.5, label='No tratable')
+axs[1,0].plot(calidad_agua, calidad_agua_media, 'g', linewidth=1.5, label='Tratable')
+axs[1,0].plot(calidad_agua, calidad_agua_alta, 'r', linewidth=1.5, label='Potable')
+axs[1,0].set_title('Calidad de agua')
+axs[1,0].legend()
+
+axs[0,1].plot(PenfermedadesM, PenfermedadesM_baja, 'b', linewidth=1.5, label='Posibilidad Baja')
+axs[0,1].plot(PenfermedadesM, PenfermedadesM_media, 'g', linewidth=1.5, label='Posibilidad Media')
+axs[0,1].plot(PenfermedadesM, PenfermedadesM_alta, 'r', linewidth=1.5, label='Posibilidad Alta')
+axs[0,1].set_title('Enfermedades')
+axs[0,1].legend()
+
 plt.show()
 
 
