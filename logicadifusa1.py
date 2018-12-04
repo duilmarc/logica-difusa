@@ -34,7 +34,7 @@ fig, axs = plt.subplots(2, 2)
 axs[0,0].plot(cercania_mineria_l, cercania_mineria_baja_l, 'b', linewidth=1.5, label='Cercano')
 axs[0,0].plot(cercania_mineria_l, cercania_mineria_media_l, '-', linewidth=1.5, label='Intermedio')
 axs[0,0].plot(cercania_mineria_l, cercania_mineria_alta_l, 'g', linewidth=1.5, label='Lejos')
-axs[0,0].set_title('Cercania a la mineria legal')
+axs[0,0].set_title('Cercania ala mineria legal')
 axs[0,0].legend()
 
 axs[0,1].plot(cercania_mineria_i, cercania_mineria_baja_i, 'b', linewidth=1.5, label='Cercano')
@@ -59,23 +59,26 @@ plt.show()
 
 
 #cuando el agua tiene un grado de pertenencia de 6 y cercano es =5
-cercania= input('Ingresa la cercania a la mineria')
-calidad= input('Ingree la calidad de agua de su distrito')
 
-cercania = 1500
-calidad = 5
+cercania = 320
+calidad = 3
 
-cercania_mineria_i_level_lo = fuzz.interp_membership(cercania_mineria_i,cercania_mineria_baja_i, cercania)
-cercania_mineria_i_level_md = fuzz.interp_membership(cercania_mineria_i,cercania_mineria_media_i, cercania)
-cercania_mineria_i_level_hi = fuzz.interp_membership(cercania_mineria_i,cercania_mineria_alta_i, cercania)
+cerca_ilegal = fuzz.interp_membership(cercania_mineria_i,cercania_mineria_baja_i, cercania)
+media_ilegal = fuzz.interp_membership(cercania_mineria_i,cercania_mineria_media_i, cercania)
+lejos_ilegal = fuzz.interp_membership(cercania_mineria_i,cercania_mineria_alta_i, cercania)
 
-cercania_mineria_l_level_lo = fuzz.interp_membership(cercania_mineria_l,cercania_mineria_baja_l, cercania)
-cercania_mineria_l_level_md = fuzz.interp_membership(cercania_mineria_l,cercania_mineria_media_l, cercania)
-cercania_mineria_l_level_hi = fuzz.interp_membership(cercania_mineria_l,cercania_mineria_alta_l, cercania)
+cerca_legal = fuzz.interp_membership(cercania_mineria_l,cercania_mineria_baja_l, cercania)
+media_legal = fuzz.interp_membership(cercania_mineria_l,cercania_mineria_media_l, cercania)
+lejos_legal = fuzz.interp_membership(cercania_mineria_l,cercania_mineria_alta_l, cercania)
 
-calidad_agua_level_lo=fuzz.interp_membership(calidad_agua,calidad_agua_bajo,calidad)
-calidad_agua_level_md=fuzz.interp_membership(calidad_agua,calidad_agua_media,calidad)
-calidad_agua_level_hi=fuzz.interp_membership(calidad_agua,calidad_agua_alta,calidad)
+no_tratable=fuzz.interp_membership(calidad_agua,calidad_agua_bajo,calidad)
+tratable=fuzz.interp_membership(calidad_agua,calidad_agua_media,calidad)
+potable=fuzz.interp_membership(calidad_agua,calidad_agua_alta,calidad)
 
+print(cercania_mineria_i_level_lo)
+print(calidad_agua_level_lo)
 
-
+regla1 = np.min(np.fmax(cerca_ilegal,cerca_legal),no_tratable)
+enfermedad_baja = np.fmin(active_rule1, PenfermedadesM_baja) 
+print(PenfermedadesM_baja)
+print(enfermedad_baja)
