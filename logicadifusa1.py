@@ -108,14 +108,50 @@ salida12=np.fmin(regla12,PenfermedadesM_alta)
 regla13 = np.fmin(media_ilegal, tratable)
 salida13=np.fmin(regla13,PenfermedadesM_alta)
 #Si la mineria legal cerca y mala calidad de agua
-regla13 = np.fmin(cerca_legal,no_tratable)
-salida13=np.fmin(regla13,PenfermedadesM_alta)
+regla14 = np.fmin(cerca_legal,no_tratable)
+salida14=np.fmin(regla14,PenfermedadesM_alta)
 
 salida_baja= np.fmax(salida1,
 					np.fmax(salida2,
 						np.fmax(salida3,
 							np.fmax(salida4,salida5))))
+print("salida baja ",salida_baja)
+salida_alta= np.fmax(salida10,
+					np.fmax(salida11,
+						np.fmax(salida12,
+							np.fmax(salida13,salida14 ))))
+print("salida alta ",salida_alta)
+salida_media= np.fmax(salida10,
+					np.fmax(salida6,
+						np.fmax(salida7,
+							np.fmax(salida8,salida9))))
+print("salida alta ",salida_media)
 
+PenfermedadesM0 = np.zeros_like(PenfermedadesM)
+fig, ax0 = plt.subplots(figsize=(8, 3))
+ax0.set_title('Resultados de las Reglas a ')
+ax0.fill_between(PenfermedadesM, PenfermedadesM0, salida_baja, facecolor='b', alpha=0.7)
+ax0.plot(PenfermedadesM, PenfermedadesM_baja, 'o', linewidth=0.5, linestyle='--' )
+ax0.fill_between(PenfermedadesM, PenfermedadesM0, salida_media, facecolor='r', alpha=0.7)
+ax0.plot(PenfermedadesM, PenfermedadesM_media, 'o', linewidth=0.5, linestyle='--', )
+ax0.fill_between(PenfermedadesM, PenfermedadesM0, salida_alta, facecolor='g', alpha=0.7)
+ax0.plot(PenfermedadesM, PenfermedadesM_alta, 'o', linewidth=0.5, linestyle='--', )
+plt.tight_layout()
+plt.show()
 
+##############desfuzificando
+union_salidas=np.fmax(salida_baja,
+                     np.fmax(salida_media,salida_alta ))
+centroide = fuzz.defuzz(PenfermedadesM, union_salidas, 'centroid')
+print("respuesta",centroide)
+salida_centroide = fuzz.interp_membership(PenfermedadesM, union_salidas, centroide)  # for plot
+print("correspondencia en la grafica",salida_centroide)
+##############visualizacion de datos
+fig, ax0 = plt.subplots(figsize=(8, 3))
 
-print(salida_baja)
+ax0.plot(PenfermedadesM, PenfermedadesM_baja, 'b', linewidth=0.5, linestyle='--', )
+ax0.plot(PenfermedadesM, PenfermedadesM_media, 'g', linewidth=0.5, linestyle='--')
+ax0.plot(PenfermedadesM, PenfermedadesM_alta, 'r', linewidth=0.5, linestyle='--')
+ax0.fill_between(PenfermedadesM, PenfermedadesM0, union_salidas, facecolor='Orange', alpha=0.7)
+ax0.plot([centroide, centroide], [0, salida_centroide], 'k', linewidth=1.5, alpha=0.9)
+plt.show()
