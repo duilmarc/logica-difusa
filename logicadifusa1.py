@@ -106,15 +106,16 @@ salida_baja= np.fmax(salida1,
 
 #determinando enfermedad_media
 
+#si la mineria es legal lejos y el agua es tratable
 regla6 = np.fmax(lejos_ilegal,tratable)
 salida6=np.fmax(regla6,PenfermedadesM_media)
-
+#si la mineria es ilegal lejos y el agua es tratable
 regla7 = np.fmax(lejos_ilegal,tratable)
 salida7=np.fmax(regla6,PenfermedadesM_media)
-
+#si la mineria es legal media y el agua es tratable
 regla8 = np.fmax(media_legal,tratable)
 salida8=np.fmax(regla6,PenfermedadesM_media)
-
+#si la mineria es legal cerca y el agua es tratable
 regla9 = np.fmax(media_legal,tratable)
 salida9=np.fmax(regla6,PenfermedadesM_media)
 
