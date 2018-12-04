@@ -96,6 +96,20 @@ regla8 = np.fmax(media_legal,tratable)
 salida8=np.fmax(regla6,PenfermedadesM_media)
 regla9 = np.fmax(media_legal,tratable)
 salida9=np.fmax(regla6,PenfermedadesM_media)
+#si mineria es ilegal entonces la enfermedad es alta
+salida10=np.fmin(cerca_ilegal,PenfermedadesM_alta)
+#Si la mineria  ilegal cerca y hay mala calidad de agua la enfermedad es alta
+regla11 = np.fmin(cerca_ilegal, no_tratable)
+salida11=np.fmin(regla11,PenfermedadesM_alta)
+#Si la mineria  ilegal cerca y hay mala calidad de agua la enfermedad es alta
+regla12 = np.fmin(cerca_ilegal, no_tratable)
+salida12=np.fmin(regla12,PenfermedadesM_alta)
+#Si la mineria ilegar media y hay media calidad de agua
+regla13 = np.fmin(media_ilegal, tratable)
+salida13=np.fmin(regla13,PenfermedadesM_alta)
+#Si la mineria legal cerca y mala calidad de agua
+regla13 = np.fmin(cerca_legal,no_tratable)
+salida13=np.fmin(regla13,PenfermedadesM_alta)
 
 salida_baja= np.fmax(salida1,
 					np.fmax(salida2,
