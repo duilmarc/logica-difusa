@@ -37,11 +37,11 @@ axs[0,0].plot(cercania_mineria_l, cercania_mineria_alta_l, 'g', linewidth=1.5, l
 axs[0,0].set_title('Cercania a la mineria legal')
 axs[0,0].legend()
 
-axs[1,1].plot(cercania_mineria_i, cercania_mineria_baja_i, 'b', linewidth=1.5, label='Cercano')
-axs[1,1].plot(cercania_mineria_i, cercania_mineria_media_i, 'g', linewidth=1.5, label='Intermedio')
-axs[1,1].plot(cercania_mineria_i, cercania_mineria_alta_i, 'r', linewidth=1.5, label='Lejos')
-axs[1,1].set_title('Cercania a la mineria ilegal')
-axs[1,1].legend()
+axs[0,1].plot(cercania_mineria_i, cercania_mineria_baja_i, 'b', linewidth=1.5, label='Cercano')
+axs[0,1].plot(cercania_mineria_i, cercania_mineria_media_i, 'g', linewidth=1.5, label='Intermedio')
+axs[0,1].plot(cercania_mineria_i, cercania_mineria_alta_i, 'r', linewidth=1.5, label='Lejos')
+axs[0,1].set_title('Cercania a la mineria ilegal')
+axs[0,1].legend()
 
 axs[1,0].plot(calidad_agua, calidad_agua_bajo, 'b', linewidth=1.5, label='No tratable')
 axs[1,0].plot(calidad_agua, calidad_agua_media, 'g', linewidth=1.5, label='Tratable')
@@ -49,11 +49,11 @@ axs[1,0].plot(calidad_agua, calidad_agua_alta, 'r', linewidth=1.5, label='Potabl
 axs[1,0].set_title('Calidad de agua')
 axs[1,0].legend()
 
-axs[0,1].plot(PenfermedadesM, PenfermedadesM_baja, 'b', linewidth=1.5, label='Posibilidad Baja')
-axs[0,1].plot(PenfermedadesM, PenfermedadesM_media, 'g', linewidth=1.5, label='Posibilidad Media')
-axs[0,1].plot(PenfermedadesM, PenfermedadesM_alta, 'r', linewidth=1.5, label='Posibilidad Alta')
-axs[0,1].set_title('Enfermedades')
-axs[0,1].legend()
+axs[1,1].plot(PenfermedadesM, PenfermedadesM_baja, 'b', linewidth=1.5, label='Posibilidad Baja')
+axs[1,1].plot(PenfermedadesM, PenfermedadesM_media, 'g', linewidth=1.5, label='Posibilidad Media')
+axs[1,1].plot(PenfermedadesM, PenfermedadesM_alta, 'r', linewidth=1.5, label='Posibilidad Alta')
+axs[1,1].set_title('Enfermedades')
+axs[1,1].legend()
 
 plt.show()
 
