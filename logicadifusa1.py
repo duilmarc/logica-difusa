@@ -75,10 +75,25 @@ no_tratable=fuzz.interp_membership(calidad_agua,calidad_agua_bajo,calidad)
 tratable=fuzz.interp_membership(calidad_agua,calidad_agua_media,calidad)
 potable=fuzz.interp_membership(calidad_agua,calidad_agua_alta,calidad)
 
-print(cercania_mineria_i_level_lo)
-print(calidad_agua_level_lo)
 
-regla1 = np.min(np.fmax(cerca_ilegal,cerca_legal),no_tratable)
-enfermedad_baja = np.fmin(active_rule1, PenfermedadesM_baja) 
-print(PenfermedadesM_baja)
-print(enfermedad_baja)
+# determinando enfermedad_baja 
+
+regla1 = np.fmin(np.fmax(cerca_ilegal,cerca_legal),no_tratable)
+salida1 = np.fmin(regla1,PenfermedadesM_baja)
+regla2 = np.fmin(np.fmax(cerca_ilegal,cerca_legal),potable)
+salida2 = np.fmin(regla2, PenfermedadesM_baja)
+regla3 = np.fmin(np.fmax(cerca_ilegal,cerca_legal),tratable)
+salida3= np.fmin(regla3, PenfermedadesM_baja)
+regla4 = np.fmin(np.fmax(media_legal,media_ilegal),no_tratable)
+salida4= np.fmin(regla4, PenfermedadesM_baja)
+regla5 = np.fmin(np.fmax(cerca_legal,lejos_ilegal),potable)
+salida5= np.fmin(regla5, PenfermedadesM_baja)
+
+salida_baja= np.fmax(salida1,
+					np.fmax(salida2,
+						np.fmax(salida3,
+							np.fmax(salida4,salida5))))
+
+
+
+print(salida_baja)
