@@ -61,7 +61,27 @@ plt.show()
 #cuando el agua tiene un grado de pertenencia de 6 y cercano es =5
 cercania= input('Ingresa la cercania a la mineria')
 calidad= input('Ingree la calidad de agua de su distrito')
+cercania=3
+calidad=5
+cercania_mineria_i_level_lo = fuzz.interp_membership(cercania_mineria_i,
+cercania_mineria_baja_i, cercania)
+cercania_mineria_i_level_md = fuzz.interp_membership(cercania_mineria_i, 
+cercania_mineria_media_i, cercania)
+cercania_mineria_i_level_hi = fuzz.interp_membership(cercania_mineria_i, 
+cercania_mineria_alta_i, cercania)
 
-cercania = 1500
-calidad = 5
+cercania_mineria_l_level_lo = fuzz.interp_membership(cercania_mineria_l,
+cercania_mineria_baja_l, cercania)
+cercania_mineria_l_level_md = fuzz.interp_membership(cercania_mineria_l, 
+cercania_mineria_media_l, cercania)
+cercania_mineria_l_level_hi = fuzz.interp_membership(cercania_mineria_l, 
+cercania_mineria_alta_l, cercania)
+
+calidad_agua_level_lo=fuzz.interp_membership(calidad_agua,
+calidad_agua_bajo,calidad)
+calidad_agua_level_md=fuzz.interp_membership(calidad_agua,
+calidad_agua_media,calidad)
+calidad_agua_level_hi=fuzz.interp_membership(calidad_agua,
+calidad_agua_alta,calidad)
+
 
