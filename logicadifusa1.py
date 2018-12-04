@@ -88,6 +88,14 @@ regla4 = np.fmin(np.fmax(media_legal,media_ilegal),no_tratable)
 salida4= np.fmin(regla4, PenfermedadesM_baja)
 regla5 = np.fmin(np.fmax(cerca_legal,lejos_ilegal),potable)
 salida5= np.fmin(regla5, PenfermedadesM_baja)
+regla6 = np.fmax(lejos_ilegal,tratable)
+salida6=np.fmax(regla6,PenfermedadesM_media)
+regla7 = np.fmax(lejos_ilegal,tratable)
+salida7=np.fmax(regla6,PenfermedadesM_media)
+regla8 = np.fmax(media_legal,tratable)
+salida8=np.fmax(regla6,PenfermedadesM_media)
+regla9 = np.fmax(media_legal,tratable)
+salida9=np.fmax(regla6,PenfermedadesM_media)
 
 salida_baja= np.fmax(salida1,
 					np.fmax(salida2,
